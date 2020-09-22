@@ -12,16 +12,15 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name:
+      - name: Docker login
         env:
-          USER: ${{DOCKER_USER}}
-          PWD: ${{DOCKER_PASSWORD}}
-          run: |
-            docker login -u $USER -p $PWD
-      - name: Build the Docker image
-           run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+          DOCKER_USER: ${{ secrets.DOCKER_USER }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        run: |
+          docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+      - name: docker build csharp
+        run: |
+          docker build . --file Dockerfile --tag latest
       - name: docker push
-           run: |
-              docker push
-      
-      
+        run: |
+          docker push
