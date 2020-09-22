@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  democi-cd:
+    image: democicd
+    build:
+      context: ./DemoCI-CD/
+      dockerfile: Dockerfile
+    ports:
+      - '5555:80'
+    networks:
+      - product-network
+    depends_on:
+      - db
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: secret
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
+networks:
+  product-network:
+    driver: bridge

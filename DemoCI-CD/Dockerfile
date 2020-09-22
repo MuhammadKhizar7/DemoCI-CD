@@ -1,16 +1,16 @@
 #See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
 
-FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim AS base
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1.8-alpine3.12 AS base
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
-FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1.402-alpine3.12 AS build
 WORKDIR /src
-COPY ["DemoCI-CD/DemoCI-CD.csproj", "DemoCI-CD/"]
-RUN dotnet restore "DemoCI-CD/DemoCI-CD.csproj"
+COPY ["DemoCI-CD.csproj", "."]
+RUN dotnet restore "DemoCI-CD.csproj"
 COPY . .
-WORKDIR "/src/DemoCI-CD"
+WORKDIR "/src"
 RUN dotnet build "DemoCI-CD.csproj" -c Release -o /app/build
 
 FROM build AS publish
