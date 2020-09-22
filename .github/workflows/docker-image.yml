@@ -19,7 +19,7 @@ jobs:
       run: docker-compose up -d
     steps:
     - name: Archive production artifacts
-              uses: actions/upload-artifact@v2
-              with:
-                name: production
-                path: app
+      uses: actions/upload-artifact@v2
+      with:
+        name: production
+        path: app
