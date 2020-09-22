@@ -12,15 +12,16 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - name:
+        env:
+          USER: ${{DOCKER_USER}}
+          PWD: ${{DOCKER_PASSWORD}}
+          run: |
+            docker login -u $USER -p $PWD
       - name: Build the Docker image
-        #      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
-    env:
-      name: production
-    steps:
-    - run: |	
-        mkdir -p ${{ github.workspace }}/artifact
-        echo hello > ${{ github.workspace }}/artifact/world.txt
-    - uses: actions/upload-artifact@v2
-      with:	
-        name: ${{ env.name }}-name	
-        path: ${{ github.workspace }}/artifact/**/*
+           run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      - name: docker push
+           run: |
+              docker push
+      
+      
