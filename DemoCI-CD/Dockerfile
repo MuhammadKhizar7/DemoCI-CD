@@ -7,14 +7,14 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1.402-alpine3.12 AS build
 WORKDIR /src
-COPY ["DemoCI-CD.csproj", "."]
+COPY ["DemoCI-CD/DemoCI-CD.csproj", "."]
 RUN dotnet restore "DemoCI-CD.csproj"
 COPY . .
 WORKDIR "/src"
-RUN dotnet build "DemoCI-CD.csproj" -c Release -o /app/build
+RUN dotnet build "DemoCI-CD.csproj" --no-restore -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "DemoCI-CD.csproj" -c Release -o /app/publish
+RUN dotnet publish "DemoCI-CD.csproj" --no-build -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
