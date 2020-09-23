@@ -22,10 +22,6 @@ jobs:
         run: |
           docker build . --file DemoCI-CD/Dockerfile --tag latest
       - name: docker push
-        uses: docker/build-push-action@v2
+      - uses: devmasx/cached-docker-build-push@v0.2.2
         with:
-          context: .
-          file: DemoCI-CD/Dockerfile
-          platforms: linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/ppc64le,linux/s390x
-          push: true
-          tags: codefighter/democi-cd:v1
+          image_name: codefighter/democi-cd:v1
