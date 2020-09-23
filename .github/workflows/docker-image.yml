@@ -18,7 +18,7 @@ jobs:
       - name: setup docker driver
         uses: docker/setup-buildx-action@v1
         with:
-        driver: docker
+         driver: docker
       - name: Docker login
         env:
           DOCKER_USER: ${{ secrets.DOCKER_USER }}
