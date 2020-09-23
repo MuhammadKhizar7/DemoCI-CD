@@ -22,8 +22,8 @@ jobs:
         run: |
           docker build . --file DemoCI-CD/Dockerfile --tag latest
       - name: docker push
-       uses: docker/build-push-action@v1
-       with:
-         registry: democi-cd
-         repository: codefighter/democi-cd
-         tags: v1
+        uses: docker/build-push-action@v1
+        with:
+          registry: democi-cd
+          repository: codefighter/democi-cd
+          tags: v1
