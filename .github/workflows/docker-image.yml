@@ -11,6 +11,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Setup docker buildx
+        id: buildx
+        uses: docker/setup-buildx-action@master
       - uses: actions/checkout@v2
       - name: docker build csharp
         run: |
