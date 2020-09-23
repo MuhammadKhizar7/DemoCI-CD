@@ -23,4 +23,4 @@ jobs:
           docker build . --file DemoCI-CD/Dockerfile --tag latest
       - name: docker push
         run: |
-          docker push DemoCI-CD:latest
+          docker push democi-cd:latest
