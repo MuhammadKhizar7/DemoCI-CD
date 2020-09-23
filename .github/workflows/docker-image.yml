@@ -15,7 +15,8 @@ jobs:
       - name: docker build csharp
         run: |
           docker build . --file DemoCI-CD/Dockerfile --tag latest
-      - uses: docker/setup-buildx-action@v1
+      - name: setup docker driver
+        uses: docker/setup-buildx-action@v1
         with:
         driver: docker
       - name: Docker login
