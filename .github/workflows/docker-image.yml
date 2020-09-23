@@ -20,7 +20,7 @@ jobs:
           docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
       - name: docker build csharp
         run: |
-          docker build . --file DemoCI-CD/Dockerfile
+          docker build . --file DemoCI-CD/Dockerfile --tag latest
       - name: docker push
         run: |
-          docker push
+          docker push DemoCI-CD:latest
