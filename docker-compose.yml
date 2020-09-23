@@ -7,7 +7,7 @@ services:
       context: ./DemoCI-CD/
       dockerfile: Dockerfile
     ports:
-      - '5555:80'
+      - '5000:80'
     networks:
       - product-network
     depends_on:
