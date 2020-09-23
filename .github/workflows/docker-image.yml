@@ -23,4 +23,4 @@ jobs:
           docker build . --file DemoCI-CD/Dockerfile --tag latest
       - name: docker push
         run: |
-          docker push democi-cd:latest
+          docker push codefighter/democi-cd:latest
