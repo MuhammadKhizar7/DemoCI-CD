@@ -24,3 +24,4 @@ jobs:
       - uses: devmasx/cached-docker-build-push@v0.2.2
         with:
           image_name: codefighter/democi-cd:v1
+          push: true
