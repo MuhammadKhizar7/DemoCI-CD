@@ -12,16 +12,15 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - name: docker build csharp
+        run: |
+          docker build . --file DemoCI-CD/Dockerfile --tag latest
       - name: Docker login
         env:
           DOCKER_USER: ${{ secrets.DOCKER_USER }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
         run: |
           docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
-      - name: docker build csharp
-        run: |
-          docker build . --file DemoCI-CD/Dockerfile --tag latest
-      - name: docker push
       - uses: devmasx/cached-docker-build-push@v0.2.2
         with:
           image_name: codefighter/democi-cd:v1
